@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!-- This meta tag ensures that the website renders correctly across different device sizes, enhancing mobile responsiveness. -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Link to the external CSS stylesheet. Uncomment if you wish to customize or add styling. -->
+    <link rel="stylesheet" href="styles.css">  
+
+    <title>Fashion Week Application</title>
+</head>
+<body>
+    <!-- ===================================================================================== -->
+    <!-- Display the current status of the database connection. 
+         !!HERE TO HELP U DEBUGGING, NOT REQUIRED IN YOUR OWN PROJECT!!
+         -->
+    <h1>Database Connection Status: 
+        <!-- An in-line placeholder to display connection status. -->
+        <span id="dbStatus"> </span>
+        <!-- A loading GIF, will be hided once get the status. -->
+        <img id="loadingGif" class="loading-gif" src="loading_100px.gif" alt="Loading...">
+    </h1>
+
+    <br><hr><br> <!-- ========================================================================= -->
+    <h1>Reset</h1>
+    <h2>Reset Database</h2>
+    <p>If you wish to reset the fashion database press on the reset button. If this is the first time you're running this page, you MUST use reset</p>
+    <button id="resetFashionDatabase"> Reset </button> <br>
+    <div id="resetResultMsg"></div>
+
+    <br><hr><br> 
+
+    <!-- Show 'shows'. 
+        Data will be fetched and inserted here dynamically using JavaScript. -->
+    <h1>Insert</h1>
+    <h2>Registered Fashion Shows</h2>
+    <table id="show" border="1">
+        <thead>
+            <tr>
+                <!--Table head, need to be adjusted accordingly to align with your own.-->
+                <th>ID</th>
+                <th>End Time</th>
+                <th>Venue</th>
+                <th>Start Time</th>
+                <th>Start Date</th>
+                <th>FW2 id</th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+
+    <br>
+    <!-- ===================================================================================== -->
+    <!-- Insert Show -->
+    <h2>Insert Shows into Fashion Week</h2>
+    <form id="insertShowForm">
+    Show ID: <input type="text" id="insertShowId" maxlength="10" required><br><br>
+    Start Time: <input type="time" id="insertStartTime" required><br><br>
+    End Time: <input type="time" id="insertEndTime" required><br><br>
+    Venue: <input type="text" id="insertVenue" maxlength="30" required><br><br>
+    Start Date: <input type="date" id="insertStartDate" required><br><br>
+    Fashion Week: <input type="text" id="insertFashionWeekId" required><br><br>
+    <button type="submit">Insert</button>
+    </form>
+    <div id="insertShowResultMsg"></div>
+
+     <br><hr><br> <!-- ========================================================================= -->
+
+    <!-- Show 'Designers'. 
+        Data will be fetched and inserted here dynamically using JavaScript. -->
+
+        <h1>Update</h1>
+    <h2>Show Designers</h2>
+    <table id="designers" border="1">
+        <thead>
+            <tr>
+                <!--Table head, need to be adjusted accordingly to align with your own.-->
+                <th>Designer Id</th>
+                <th>Email</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Education</th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+
+
+    <br>
+    <br>
+
+        <h2>Update Email in Designers</h2><p>(No duplicates)</p>
+    <form id="updateEmailDesignerTable">
+        Designer Id: <input type="text" id="DesignerId" placeholder="Enter Designer Id" required> <br><br>
+        New Designer Email: <input type="text" id="updateNewDesignerEmail" placeholder="Enter New Designer Email" maxlength="20"> <br><br>
+
+        <button type="submit"> update </button> <br>
+    </form>
+    <!-- A placeholder to display messages related to the update operation. -->
+    <div id="updateEmailResultMsg"></div>
+
+
+         <br><hr><br> <!-- ========================================================================= -->
+
+
+    <!-- Show 'Collections'. 
+        Data will be fetched and inserted here dynamically using JavaScript. -->
+        <h1> Projection </h1>
+    <h2>Show Collections</h2>
+    <button id="submitProjection">Apply Projection</button>
+    <br>
+    <br>
+    <table id="collections" border="1">
+        <thead>
+            <tr>
+                <!--Table head, need to be adjusted accordingly to align with your own.-->
+                <th id="yearId">Year<input type="checkbox" id="col-year"></th>
+                <th id="seasonId">Season<input type="checkbox" id="col-season"></th>
+                <th id="nameId">Name<input type="checkbox" id="col-name"></th>
+                <th id="itemId">Number of Items<input type="checkbox" id="col-items"></th>
+                <th id="showId">Show Id<input type="checkbox" id="col-showId"></th>
+                <th id="legalNameId">Legal Name<input type="checkbox" id="col-legalName"></th>
+                <th id="countryOfOriginId">Country of Origin<input type="checkbox" id="col-countryOfOrigin"></th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+    
+
+    <h1> Delete </h1>
+    <h2> Delete Collection </h2>
+    <form id="deleteCollection">
+        Year: <input type="number" id="insertYear" placeholder="Enter Year" required> <br><br>
+        Season: <input type="text" id="insertSeason" placeholder="Enter Season" maxlength="30"> <br><br>
+        Name: <input type="text" id="insertColName" placeholder="Enter Name" maxlength="30"> <br><br>
+
+        <button type="submit"> Delete </button> <br>
+    </form>
+    <div id="deleteCollectionResultMsg"></div>
+
+
+    <h2>Show Items</h2>
+    <table id="items" border="1">
+        <thead>
+            <tr>
+                <th>Item Number</th>
+                <th>Year</th>
+                <th>Season</th>
+                <th>Name</th>
+                <th>Type</th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+
+    <br><hr><br> <!-- ========================================================================= -->
+    
+    <h1> Select & Insert </h1>
+    <!-- Show Model -->
+
+    <!-- Show Model -->
+<h2>Show Models</h2>
+<table id="model" border="1">
+    <thead>
+        <tr>
+            <th>Model ID</th>
+            <th>Compensation</th>
+            <th>Weight</th>
+            <th>Height</th>
+            <th>Age</th>
+            <th>Last Name</th>
+            <th>First Name</th>
+        </tr>
+    </thead>
+    <tbody>
+    </tbody>
+</table>
+
+    <br>
+
+    <!-- Insert Model -->
+<h2>Insert Values into Model</h2>
+<form id="insertModelForm">
+    Model ID: <input type="text" id="insertModelId" maxlength="10" required><br><br>
+    Compensation: <input type="number" id="insertCompensation" required><br><br>
+    Weight: <input type="number" id="insertWeight"><br><br>
+    Height: <input type="number" id="insertHeight"><br><br>
+    Age: <input type="number" id="insertAge"><br><br>
+    Last Name: <input type="text" id="insertLastName" maxlength="30"><br><br>
+    First Name: <input type="text" id="insertFirstName" maxlength="30" required><br><br>
+    <button type="submit">Insert</button>
+</form>
+<div id="insertModelResultMsg"></div>
+
+<br>
+
+ <!-- Select Model -->
+
+<h2>Select Models </h2>
+<p>Build your search query using any combination of AND/OR conditions:</p>
+
+<div>
+    <select id="modelLogic">
+        <option value="">--</option>
+        <option value="AND">AND</option>
+        <option value="OR">OR</option>
+    </select>
+
+    <select id="modelAttribute">
+        <option value="age">Age</option>
+        <option value="height">Height</option>
+        <option value="weight">Weight</option>
+        <option value="compensation">Compensation</option>
+        <option value="first_name">First Name</option>
+        <option value="last_name">Last Name</option>
+    </select>
+
+    <select id="modelOperator">
+        <option value="=">=</option>
+        <option value=">">></option>
+        <option value="<"><</option>
+        <option value=">=">>=</option>
+        <option value="<="><=</option>
+        <option value="<>">≠</option>
+        <option value="LIKE">LIKE</option>
+    </select>
+
+    <input type="text" id="modelValue" placeholder="Value">
+
+    <button type="button" id="addModelCondition">Add Condition</button>
+</div>
+
+<br>
+<div><strong>Current Conditions:</strong></div>
+<div id="modelConditionsList"></div>
+<br>
+
+<button type="button" id="executeModelSelect">Search</button>
+<button type="button" id="clearModelConditions">Clear All</button>
+
+<div id="selectModelResultMsg"></div>
+<br>
+
+<table id="modelSelectResults" border="1">
+    <thead>
+        <tr>
+            <th>Model ID</th>
+            <th>Compensation</th>
+            <th>Weight</th>
+            <th>Height</th>
+            <th>Age</th>
+            <th>Last Name</th>
+            <th>First Name</th>
+        </tr>
+    </thead>
+    <tbody>
+    </tbody>
+</table>
+
+    
+
+
+
+
+    <!-- <h2>Update Name in DemoTable</h2>
+    <p>The values are case sensitive and if you enter in the wrong case, the update statement will not do anything.</p>
+    <form id="updataNameDemotable">
+        Old Name: <input type="text" id="updateOldName" placeholder="Enter Old Name" required> <br><br>
+        New Name: <input type="text" id="updateNewName" placeholder="Enter New Name" maxlength="20"> <br><br>
+
+        <button type="submit"> update </button> <br>
+    </form> -->
+    <!-- A placeholder to display messages related to the update operation. -->
+    <!-- <div id="updateNameResultMsg"></div> -->
+
+
+    ___________________________________________________________________________
+
+    <!-- <h2>Count the Tuples in DemoTable</h2>
+    <button id="countDemotable"> count </button> <br><br> -->
+    <!-- A placeholder to display the count result. -->
+    <!-- <div id="countResultMsg"></div> <br> -->
+
+    <!-- <br><hr><br> ========================================================================= -->
+
+    <!-- Show 'shows'. 
+        Data will be fetched and inserted here dynamically using JavaScript. -->
+    <!-- <h2>Show Fashion Show</h2>
+    <table id="show" border="1">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>End Time</th>
+                <th>Venue</th>
+                <th>Start Time</th>
+                <th>Start Date</th>
+                <th>FW2 id</th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+
+    <br>
+    <h2>Insert Values into Show</h2>
+    <form id="insertShowForm">
+    Show ID: <input type="text" id="insertShowId" maxlength="10" required><br><br>
+    Start Time: <input type="time" id="insertStartTime" required><br><br>
+    End Time: <input type="time" id="insertEndTime" required><br><br>
+    Venue: <input type="text" id="insertVenue" maxlength="30" required><br><br>
+    Start Date: <input type="date" id="insertStartDate" required><br><br>
+    Fashion Week: <input type="text" id="insertFashionWeekId" required><br><br>
+    <button type="submit">Insert</button>
+    </form>
+    <div id="insertShowResultMsg"></div>
+
+    <br><hr><br> ========================================================================= -->
+
+
+<h1> Join </h1>
+    <h2> All About Creative Directors (But Only the Well-Paid Ones) </h2>
+    <p>Input the minimal salary of creative directors you want to know about more!</p>
+
+ <br>
+
+    <!-- Show 'Creative Director'. 
+        Data will be fetched and inserted here dynamically using JavaScript. -->
+    <h2>Show Creative Director</h2>
+    <table id="creativedirector" border="1">
+        <thead>
+            <tr>
+                <!--Table head, need to be adjusted accordingly to align with your own.-->
+                <th>Designer Id</th>
+                <th>Salary</th>
+                <th>Working Since</th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+ <br>
+    
+    <form id="joinCreativeDirWithDesigner">
+        Salary: <input type="number" id="insertSalary" placeholder="Enter Minimum Salary" required> <br><br>
+
+        <button type="submit"> Sumbit </button> <br>
+    </form>
+    <div id="joinCreativeDirWithDesignerResultMsg"></div>
+
+ <br>
+    <!-- Show 'Creative Director'. 
+        Data will be fetched and inserted here dynamically using JavaScript. -->
+    <table id="creativedirectorjoined" border="1">
+        <thead>
+            <tr>
+                <!--Table head, need to be adjusted accordingly to align with your own.-->
+                <th>Designer Id</th>
+                <th>Salary</th>
+                <th>Working Since</th>
+                <th>Email</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Education</th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+    
+    <br><hr><br> <!-- ========================================================================= -->
+
+<h1>Aggregation with GROUP BY</h1>
+    <!-- Show 'GuestDesigner_1'. -->
+<h2>Show Guest Designer</h2>
+<table id="guestdesigner1" border="1">
+    <thead>
+        <tr>
+            <th>Associated Brand</th>
+            <th>Compensation</th>
+        </tr>
+    </thead>
+    <tbody>
+    </tbody>
+</table>
+
+<br>
+
+<!-- Show 'GuestDesigner_2'. -->
+<h2>Show Guest Designer 2</h2>
+<table id="guestdesigner2" border="1">
+    <thead>
+        <tr>
+            <th>Designer ID</th>
+            <th>Associated Brand</th>
+        </tr>
+    </thead>
+    <tbody>
+    </tbody>
+</table>
+<br>
+
+<h2>Guest Designer Compensation by Brand</h2>
+<button id="groupGuestDesigner">Calculate Brand Ratings</button>
+<br><br>
+
+<div id="groupGuestDesignerResultMsg"></div>
+<br>
+
+<table id="guestDesignerGrouped" border="1">
+    <thead>
+        <tr>
+            <th>Rating</th>
+            <th>Associated Brand</th>
+            <th>Number of Guest Designers</th>
+            <th>Average Compensation</th>
+            <th>Max Compensation</th>
+            <th>Min Compensation</th>
+            <th>Rating Stars</th>
+        </tr>
+    </thead>
+    <tbody>
+    </tbody>
+</table>
+
+<br><hr><br>
+
+<h1>Aggregation with HAVING</h1>
+
+
+    <h2>Count seasons where average number of items > amount specified</h2>
+
+    <form id="countSeasonsForm">
+        NumItems: <input type="number" id="specifyNumItems" placeholder="numItems" maxlength="2"> <br><br> 
+        <button id="countSeasonsButton" type="button"> count </button> <br><br>
+    </form>
+
+    <div id="countSeasonsResultMsg"></div> <br>
+
+    <!-- SELECT Count(*) from Collections GROUP BY season HAVING number_of_items >  -->
+
+
+<br><hr><br>
+
+<h1>Nested aggregation with GROUP BY</h1>
+
+     <h2>Top Fashion Weeks by Average Yearly Attendance</h2>
+
+
+    <!-- Show 'fw1'. 
+        Data will be fetched and inserted here dynamically using JavaScript. -->
+    <h2>Show Fashion Week 1</h2>
+    <table id="fw1" border="1">
+        <thead>
+            <tr>
+                <!--Table head, need to be adjusted accordingly to align with your own.-->
+                <th>Year</th>
+                <th>Season</th>
+                <th>Start Date</th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+
+    <!-- Show 'fw1'. 
+        Data will be fetched and inserted here dynamically using JavaScript. -->
+    <h2>Show Fashion Week 2</h2>
+    <table id="fw2" border="1">
+        <thead>
+            <tr>
+                <!--Table head, need to be adjusted accordingly to align with your own.-->
+                <th>ID</th>
+                <th>Start Date</th>
+                <th>City</th>
+                <th>End Date</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+
+  <br>
+
+    <button id="topfws"> Reveal </button> <br><br>
+    <!-- A placeholder to display the revealted result. -->
+    <div id="topfwsResultMsg"></div> <br>
+
+    <!-- Show 'top fws'. 
+        Data will be fetched and inserted here dynamically using JavaScript. -->
+    <table id="topfwsrevealed" border="1">
+        <thead>
+            <tr>
+                <!--Table head, need to be adjusted accordingly to align with your own.-->
+                <th>Fashion Week City</th>
+                <th>Average shows (per year)</th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+
+    <br><hr><br>
+
+
+<h1>Division</h1>
+
+<!-- Show modelWalksShow -->
+<h2>Show Model Walks Show</h2>
+<table id="modelWalksShow" border="1">
+    <thead>
+        <tr>
+            <th>Model ID</th>
+            <th>Last Name</th>
+            <th>First Name</th>
+            <th>Show ID</th>
+            <th>Fashion Week ID</th>
+        </tr>
+    </thead>
+    <tbody>
+    </tbody>
+</table>
+
+<br>
+
+<!-- Division Models -->
+<h2>Find models who walked in all show at a Fashion Week</h2>
+<p>Enter the FashionWeekID to find models walked in every show in this Fashion Week.</p>
+
+<form id="divisionQuery">
+    Fashion Week ID: 
+    <input type="text" id="divisionFashionWeekId" placeholder="Value">
+    <button type="submit">Find Models</button>
+</form>
+
+<div id="divisionResultMsg"></div>
+<table id="divisionResults" border="1">
+    <thead>
+        <tr>
+            <th>Model ID</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Compensation</th>
+        </tr>
+    </thead>
+    <tbody>
+    </tbody>
+</table>
+
+
+
+
+
+    <!-- <h2>Update Name in DemoTable</h2>
+    <p>The values are case sensitive and if you enter in the wrong case, the update statement will not do anything.</p>
+    <form id="updataNameDemotable">
+        Old Name: <input type="text" id="updateOldName" placeholder="Enter Old Name" required> <br><br>
+        New Name: <input type="text" id="updateNewName" placeholder="Enter New Name" maxlength="20"> <br><br>
+
+        <button type="submit"> update </button> <br>
+    </form> -->
+    <!-- A placeholder to display messages related to the update operation. -->
+    <!-- <div id="updateNameResultMsg"></div> -->
+
+
+    <!-- <h2>Count the Tuples in DemoTable</h2> -->
+    <!-- <button id="countDemotable"> count </button> <br><br>
+    <div id="countResultMsg"></div> <br> -->
+
+
+
+
+
+
+
+
+    <!-- <h2>Update Name in DemoTable</h2>
+    <p>The values are case sensitive and if you enter in the wrong case, the update statement will not do anything.</p>
+    <form id="updataNameDemotable">
+        Old Name: <input type="text" id="updateOldName" placeholder="Enter Old Name" required> <br><br>
+        New Name: <input type="text" id="updateNewName" placeholder="Enter New Name" maxlength="20"> <br><br>
+
+        <button type="submit"> update </button> <br>
+    </form> -->
+    <!-- A placeholder to display messages related to the update operation. -->
+    <!-- <div id="updateNameResultMsg"></div> -->
+
+
+    ___________________________________________________________________________
+
+    <!-- <h2>Count the Tuples in DemoTable</h2>
+    <button id="countDemotable"> count </button> <br><br>
+    <div id="countResultMsg"></div> <br> -->
+
+
+
+
+    <!-- External JavaScript file that contains the functionality/logic for the operations above. -->
+    <script src="scripts.js"></script>
+</body>
+</html>
